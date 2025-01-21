@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cricket Game</title>
+  </head>
+  <style>
+    body {
+      background-image: url(https://wallpaperaccess.com/full/4650858.jpg);
+      height: 100vh;
+      width: 100%;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      overflow: hidden;
+    }
+    button img {
+      object-fit: cover;
+      height: 19em;
+      border-radius: 100px;
+      width: 12em;
+    }
+    button {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+    }
+    #Bat {
+      cursor: pointer;
+      background-color: #fff;
+      border-radius: 100px;
+    }
+  </style>
+  <body>
+    <button
+      id="Bat"
+      onclick="
+        let computerChoice=generatecomputerChoice();
+        var getresult=showResult('Bat',computerChoice)
+        alert(`User have chossen Bat and computer have chosen ${computerChoice} and the result is ${getresult}
+        
+        Win:${Score.Win}
+        Lose:${Score.Loss}
+        Tie:${Score.Tie}
+        `)
+        "
+    >
+      <img
+        src="https://png.pngtree.com/png-vector/20240911/ourmid/pngtree-cricket-bat-clipart-sports-equipment-illustration-png-image_13813816.png"
+        alt=""
+      />
+    </button>
+    <button
+      onclick="
+        computerChoice=generatecomputerChoice();
+        var getresult=showResult('Ball',computerChoice)
+        alert(`User have chossen Ball and computer have chosen ${computerChoice} and the result is ${getresult}
+        
+        Win:${Score.Win}
+        Lose:${Score.Loss}
+        Tie:${Score.Tie}
+        `)
+        "
+    >
+      <img
+        src="https://img.freepik.com/free-photo/cricket-ball-isolated_53876-17944.jpg"
+        alt=""
+      />
+    </button>
+    <button
+      onclick="
+        computerChoice=generatecomputerChoice();
+        var getresult=showResult('Stump',computerChoice)
+        alert(`User have chossen Stump and computer have chosen ${computerChoice} and the result is ${getresult}
+        
+        Win:${Score.Win}
+        Lose:${Score.Loss}
+        Tie:${Score.Tie}
+        `)
+        "
+    >
+      <img
+        src="https://media.istockphoto.com/id/1152243128/vector/cricket-gate-for-a-sports-game-stock-vector-illustration.jpg?s=612x612&w=0&k=20&c=gyvfT6Udf3TjRPrdPPgO5ZU8xn0oSqnNWQ8dPMemnbE="
+        alt=""
+      />
+    </button>
+    <script>
+      // for score accounting
+      let Score = {
+        Win: 0,
+        Loss: 0,
+        Tie: 0,
+      };
+
+      // computer choice function
+      let randomNumber = Math.random() * 3;
+      function generatecomputerChoice() {
+        if (randomNumber > 0 && randomNumber <= 1) {
+          return "Bat";
+        } else if (randomNumber > 1 && randomNumber <= 2) {
+          return "Ball";
+        } else {
+          return "Stump";
+        }
+      }
+
+      // competition between use or computer
+      function showResult(userMove, computerMove) {
+        if (userMove === "Bat") {
+          if (computerMove === "Bat") {
+            Score.Tie++;
+            return "Its a tie...";
+          } else if (computerMove === "Ball") {
+            Score.Win++;
+            return "User won";
+          } else {
+            Score.Loss++;
+            return "Computer won";
+          }
+        } else if (userMove === "Ball") {
+          if (computerMove === "Bat") {
+            Score.Loss++;
+            return "Computer has Won";
+          } else if (computerMove === "Ball") {
+            Score.Tie++;
+            return "Its a tie...";
+          } else {
+            Score.Win++;
+            return "User has won";
+          }
+        } else if (userMove === "Stump") {
+          if (computerMove === "Bat") {
+            Score.Win++;
+            return "User has Won";
+          } else if (computerMove === "Ball") {
+            Score.Loss++;
+            return "Computer has won";
+          } else {
+            Score.Tie++;
+            return "Its a tie...";
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
